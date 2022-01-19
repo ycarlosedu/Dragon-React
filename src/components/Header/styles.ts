@@ -16,14 +16,28 @@ export const Content = styled.div`
   margin: 0 auto;
 `;
 
-export const GroupDiv = styled.div`
+export const UserGroupDiv = styled.div`
   display: flex;
   gap: 15px;
   align-items: center;
+
+  & > img {
+    width: 60px;
+    padding: 10px 15px;
+    border: 1px solid ${(props) => props.theme.Borders};
+    border-radius: 10px;
+  }
 `;
 
-export const UserIconDiv = styled.div`
-  width: 32px;
-  padding: 10px;
-  border: 1px solid ${(props) => props.theme.Borders};
+export const LogoGroupDiv = styled.div`
+  display: flex;
+  align-items: center;
+
+  & img:nth-child(1) {
+    width: 70px;
+  }
+
+  & img:nth-child(2) {
+    width: 130px;
+  }
 `;

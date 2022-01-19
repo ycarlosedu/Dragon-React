@@ -5,13 +5,15 @@ import {
   Route,
 } from 'react-router-dom';
 import Home from '../Pages/App/Home';
+import NewDragon from '../Pages/Dragons/New';
 
 const Routes: React.FC = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="*" element={<Home />}></Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/new" element={<NewDragon />} />
+        <Route path="*" element={<Home />} />
       </Switch>
     </Router>
   );

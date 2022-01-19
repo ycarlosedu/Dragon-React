@@ -6,6 +6,7 @@ export default {
   Secondary: 'rgba(205, 46, 90, 1)',
   Borders: '#323238',
   Red: '#ce4a4a',
+  Blue: '#00aaff',
   Yellow: '#ffcd1e',
   Green: '#04d361',
   White: '#fff',
