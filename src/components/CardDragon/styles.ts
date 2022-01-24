@@ -11,6 +11,7 @@ export const Card = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  text-align: center;
 `;
 
 export const DivButton = styled.div`

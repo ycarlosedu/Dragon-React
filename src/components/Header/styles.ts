@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.header`
@@ -29,7 +30,7 @@ export const UserGroupDiv = styled.div`
   }
 `;
 
-export const LogoGroupDiv = styled.div`
+export const LogoGroupDiv = styled(Link)`
   display: flex;
   align-items: center;
 

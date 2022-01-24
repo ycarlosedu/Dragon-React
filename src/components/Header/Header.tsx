@@ -8,7 +8,7 @@ const Header: React.FC = () => {
   return (
     <Container>
       <Content>
-        <LogoGroupDiv>
+        <LogoGroupDiv to="/">
           <img src={Logo} alt="" />
           <img src={LogoName} alt="" />
         </LogoGroupDiv>

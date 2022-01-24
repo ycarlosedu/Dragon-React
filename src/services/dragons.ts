@@ -23,9 +23,9 @@ export const getDragons = async () => {
   }
 };
 
-export const getDragonsByID = async (id: number) => {
+export const getDragonsByID = async (id: number | undefined | string) => {
   try {
-    const response = await api.get(`/dragon${id}`);
+    const response = await api.get(`/dragon/${id}`);
     return response;
   } catch (error: any) {
     const response = handleApi(error);
@@ -43,9 +43,12 @@ export const postDragons = async (dragon: DragonProps) => {
   }
 };
 
-export const putDragons = async (id: number, dragon: DragonProps) => {
+export const putDragons = async (
+  id: number | undefined | string,
+  dragon: DragonProps,
+) => {
   try {
-    const response = await api.put(`/dragon${id}`, dragon);
+    const response = await api.put(`/dragon/${id}`, dragon);
     return response;
   } catch (error: any) {
     const response = handleApi(error);
@@ -53,9 +56,9 @@ export const putDragons = async (id: number, dragon: DragonProps) => {
   }
 };
 
-export const deleteDragons = async (id: number) => {
+export const deleteDragons = async (id: number | undefined) => {
   try {
-    const response = await api.delete(`/dragon${id}`);
+    const response = await api.delete(`/dragon/${id}`);
     return response;
   } catch (error: any) {
     const response = handleApi(error);

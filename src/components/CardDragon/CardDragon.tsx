@@ -5,8 +5,11 @@ import Button from '../Button';
 import { ReactComponent as Delete } from '../../assets/icons/delete.svg';
 import { ReactComponent as ViewIcon } from '../../assets/icons/view.svg';
 import { ReactComponent as EditIcon } from '../../assets/icons/edit.svg';
+import { useNavigate } from 'react-router-dom';
 
-const CardDragon: React.FC<CardDragonProps> = ({ dragon }) => {
+const CardDragon: React.FC<CardDragonProps> = ({ dragon, deleteDragons }) => {
+  const navigate = useNavigate();
+
   return (
     <Card>
       <h2>{dragon.name}</h2>
@@ -15,10 +18,13 @@ const CardDragon: React.FC<CardDragonProps> = ({ dragon }) => {
         <Button variant="icon">
           <ViewIcon color={'#04d361'} />
         </Button>
-        <Button variant="icon">
+        <Button variant="icon" onClick={() => navigate(`/edit/${dragon.id}`)}>
           <EditIcon color={'#ffcd1e'} />
         </Button>
-        <Button variant="icon">
+        <Button
+          variant="icon"
+          onClick={() => deleteDragons(dragon.id, dragon.name, dragon.type)}
+        >
           <Delete color={'#ce4a4a'} />
         </Button>
       </DivButton>

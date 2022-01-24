@@ -13,6 +13,7 @@ const Routes: React.FC = () => {
       <Switch>
         <Route path="/" element={<Home />} />
         <Route path="/new" element={<NewDragon />} />
+        <Route path="/edit/:id" element={<NewDragon />} />
         <Route path="*" element={<Home />} />
       </Switch>
     </Router>

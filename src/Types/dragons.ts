@@ -2,10 +2,23 @@ export interface DragonProps {
   name: string;
   type: string;
   histories: string | string[];
-  createdAt?: Date;
-  id?: number;
+}
+
+export interface getDragonProps {
+  name: string;
+  type: string;
+  histories: string | string[];
+  id: number;
+  createdAt: Date;
 }
 
 export interface CardDragonProps {
-  dragon: DragonProps;
+  dragon: getDragonProps;
+  deleteDragons: Function;
+}
+
+export interface dragonModalProps {
+  id: number | undefined;
+  name: string;
+  type: string;
 }

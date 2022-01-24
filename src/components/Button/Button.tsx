@@ -4,11 +4,21 @@ import { ButtonWrapper } from './styles';
 export type ButtonProps = {
   variant?: string;
   onClick?: any;
+  type?: string;
 };
 
-const Button: React.FC<ButtonProps> = ({ children, variant, onClick }) => {
+const Button: React.FC<ButtonProps> = ({
+  children,
+  variant,
+  onClick,
+  type,
+}) => {
   return (
-    <ButtonWrapper variant={variant} onClick={onClick}>
+    <ButtonWrapper
+      variant={variant}
+      onClick={onClick}
+      type={type ? 'submit' : 'button'}
+    >
       {children}
     </ButtonWrapper>
   );
