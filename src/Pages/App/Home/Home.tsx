@@ -25,6 +25,7 @@ const Home: React.FC = () => {
   const [dragon, setDragon] = useState<dragonModalProps>();
 
   const DeleteDragonModal = (id: number, name: string, type: string) => {
+    setModalState('');
     setModalIsOpen(true);
     setDragon({ id: id, name: name, type: type });
   };

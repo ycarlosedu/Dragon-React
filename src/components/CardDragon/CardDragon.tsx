@@ -15,7 +15,7 @@ const CardDragon: React.FC<CardDragonProps> = ({ dragon, deleteDragons }) => {
       <h2>{dragon.name}</h2>
       <p>Tipo: {dragon.type}</p>
       <DivButton>
-        <Button variant="icon">
+        <Button variant="icon" onClick={() => navigate(`/view/${dragon.id}`)}>
           <ViewIcon color={'#04d361'} />
         </Button>
         <Button variant="icon" onClick={() => navigate(`/edit/${dragon.id}`)}>

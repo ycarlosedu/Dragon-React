@@ -26,6 +26,10 @@ export const InputDiv = styled.div<InputProps>`
       font-size: ${(props) =>
         props.isFilled || props.isFocused ? '14px' : '20px'};
     transition: all 0.2s ease-in-out;
+
+    &:hover{
+      cursor: text;
+    }
   }
 `;
 

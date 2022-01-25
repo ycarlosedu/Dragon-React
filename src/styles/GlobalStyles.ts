@@ -10,8 +10,6 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-
-
   body {
     scrollbar-width: thin;
     margin: 0;
@@ -33,7 +31,12 @@ export default createGlobalStyle`
 
   a {
     text-decoration: none;
-    background-color: transparent
+    background-color: transparent;
+    color: ${(props) => props.theme.Primary};
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   button {

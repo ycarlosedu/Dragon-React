@@ -1,7 +1,7 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
-import { BackAndText, Container, Content, Form } from './styles';
+import { Container, Content, Form } from './styles';
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
 import {
@@ -71,16 +71,15 @@ const NewDragon: React.FC = () => {
       <Header />
       <Container>
         <Content>
-          <BackAndText>
-            <Button
-              onClick={() => {
-                navigate('/');
-              }}
-            >
-              Voltar
-            </Button>
-            <h1>Cadastre seus dragões aqui e compartilhe-os com o mundo!</h1>
-          </BackAndText>
+          <Button
+            variant="warning"
+            onClick={() => {
+              navigate('/');
+            }}
+          >
+            Voltar
+          </Button>
+          <h1>Cadastre seus dragões aqui e compartilhe-os com o mundo!</h1>
           <Form onSubmit={addNewDragon}>
             <Input
               label="name"

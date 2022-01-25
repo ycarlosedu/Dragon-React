@@ -1,29 +1,33 @@
 import styled from 'styled-components';
 
 export const Container = styled.main`
-  width: 100%;
-  height: calc(100vh - 160px);
+  width: 100vw;
+  height: 100vh;
   background: ${(props) => props.theme.Background};
-  display: flex;
-  justify-content: center;
+  display: grid;
+  place-items: center;
 `;
 
 export const Content = styled.div`
   width: 80%;
-  margin: 30px 0 50px;
   height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+
+  & > div {
+    width: 40%;
+  }
 `;
 
 export const Form = styled.form`
-  width: 50%;
-  height: 70%;
   display: flex;
   flex-direction: column;
+  gap: 30px;
   align-items: center;
-  gap: 50px;
-  justify-content: center;
+`;
+
+export const CreateAccountDiv = styled.div`
+  display: flex;
+  gap: 10px;
 `;

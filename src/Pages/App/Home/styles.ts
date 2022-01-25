@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.main`
-  min-width: 100vh;
   width: 100%;
   height: 100%;
   background: ${(props) => props.theme.Background};
   display: flex;
   justify-content: center;
+  min-height: calc(100vh - 160px);
 `;
 
 export const Content = styled.div`
