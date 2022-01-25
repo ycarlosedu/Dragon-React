@@ -9,19 +9,68 @@ import NewDragon from '../Pages/Dragons/New';
 import ViewDragon from '../Pages/Dragons/View';
 import Login from '../Pages/App/Login';
 import CreateLogin from '../Pages/App/Login/CreateLogin';
+import PrivateRoute from './PrivateRoute';
 
 const Routes: React.FC = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/" element={<Home />} />
-        <Route path="/new" element={<NewDragon />} />
-        <Route path="/edit/:id" element={<NewDragon />} />
-        <Route path="/view/:id" element={<ViewDragon />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/create-login" element={<CreateLogin />} />
-        <Route path="*" element={<Home />} />
-        View
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/new"
+          element={
+            <PrivateRoute>
+              <NewDragon />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/edit/:id"
+          element={
+            <PrivateRoute>
+              <NewDragon />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/view/:id"
+          element={
+            <PrivateRoute>
+              <ViewDragon />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <PrivateRoute inverse={true}>
+              <Login />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/create-login"
+          element={
+            <PrivateRoute inverse={true}>
+              <CreateLogin />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
       </Switch>
     </Router>
   );

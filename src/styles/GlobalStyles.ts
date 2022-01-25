@@ -62,6 +62,9 @@ export default createGlobalStyle`
     border-radius: 10px;
     text-align: center;
     color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .Overlay {

@@ -13,6 +13,7 @@ type ModalProps = {
   handleDeleteDragon?: Function;
   dragon?: dragonModalProps;
   modalState?: string;
+  text?: string;
 };
 
 const ModalWrapper: React.FC<ModalProps> = ({
@@ -21,6 +22,7 @@ const ModalWrapper: React.FC<ModalProps> = ({
   handleDeleteDragon,
   dragon,
   modalState,
+  text,
 }) => {
   return (
     <Modal
@@ -31,11 +33,6 @@ const ModalWrapper: React.FC<ModalProps> = ({
       overlayClassName="Overlay"
       contentLabel="Example Modal"
     >
-      <CancelModal>
-        <Button variant="icon" onClick={() => setModalIsOpen(false)}>
-          <Close />
-        </Button>
-      </CancelModal>
       {modalState === 'success' ? (
         <>
           <InfosModal>
@@ -48,15 +45,17 @@ const ModalWrapper: React.FC<ModalProps> = ({
         <>
           <InfosModal>
             <h2>Erro!</h2>
-            <h3>Não foi possível realizar a operação.</h3>
+            <h3>
+              {text !== '' ? text : 'Não foi possível realizar a operação.'}
+            </h3>
           </InfosModal>
           <Button onClick={() => setModalIsOpen(false)}>Fechar</Button>
         </>
       ) : (
         <>
           <InfosModal>
-            <h2>Tem certeza que deseja excluir?</h2>
-            <h3>O seguinte dragão será excluído: </h3>
+            <h2>Atenção!</h2>
+            <h3>Tem certeza que deseja excluir? </h3>
             <p>Nome: {dragon?.name}</p>
             <p>Tipo: {dragon?.type}</p>
           </InfosModal>

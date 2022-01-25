@@ -17,10 +17,15 @@ export const Content = styled.div`
 
   & > div {
     width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 `;
 
 export const Form = styled.form`
+  width: 40%;
   display: flex;
   flex-direction: column;
   gap: 30px;

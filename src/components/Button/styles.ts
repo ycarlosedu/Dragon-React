@@ -15,4 +15,6 @@ export const ButtonWrapper = styled.button<ButtonProps>`
   border-radius: 8px;
   padding: 10px;
   font-size: 20px;
+  display: grid;
+  place-items: center;
 `;

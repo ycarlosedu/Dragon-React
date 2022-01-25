@@ -1,74 +1,100 @@
 import React, { FormEvent, useState } from 'react';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
-import { Container, Content, Form } from './styles';
+import { Container, Content, CreateAccountDiv, Form } from './styles';
+import { useNavigate } from 'react-router';
+import ModalWrapper from '../../../components/Modal';
+import { Link } from 'react-router-dom';
+import Logo from '../../../assets/icons/logo.png';
 
 const CreateLogin: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [retryPassword, setRetryPassword] = useState<string>('');
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [modalState, setModalState] = useState<string>('');
+  const [modalText, setModalText] = useState<string>('');
+  const auth = getAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     if (password === retryPassword) {
-      alert('Sucess');
-      localStorage.setItem('Name', name);
-      localStorage.setItem('Email', email);
-      localStorage.setItem('Password', password);
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          localStorage.setItem('Dragons/Email', email);
+          localStorage.setItem('Dragons/Token', user.uid);
+          navigate('/');
+        })
+        .catch((error) => {
+          // const errorCode = error.code;
+          const errorMessage = error.message;
+          setModalState('error');
+          setModalText(errorMessage);
+          setModalIsOpen(true);
+        });
+      localStorage.setItem(email, name);
     } else {
       alert('Os dois campos de senha devem estar iguais!');
     }
-    console.log(name);
-    console.log(email);
-    console.log(password);
-    console.log(retryPassword);
   };
 
   return (
     <Container>
       <Content>
         <div>
+          <img src={Logo} alt="" />
           <h1>
             Faça seu login, veja nossos dragões cadastrados e também nos mostre
             os seus!
           </h1>
         </div>
-        <div>
-          <Form onSubmit={handleSubmit}>
-            <Input
-              label="Name"
-              type="text"
-              onChange={setName}
-              value={name}
-              required={true}
-            />
-            <Input
-              label="Email"
-              type="email"
-              onChange={setEmail}
-              value={email}
-              required={true}
-            />
-            <Input
-              label="Password"
-              type="password"
-              onChange={setPassword}
-              value={password}
-              required={true}
-            />
-            <Input
-              label="Confirm your password"
-              type="password"
-              onChange={setRetryPassword}
-              value={retryPassword}
-              required={true}
-            />
-            <Button type="submit">Cadastrar</Button>
-          </Form>
-        </div>
+        <Form onSubmit={handleSubmit}>
+          <Input
+            label="Name"
+            type="text"
+            onChange={setName}
+            value={name}
+            required={true}
+          />
+          <Input
+            label="Email"
+            type="email"
+            onChange={setEmail}
+            value={email}
+            required={true}
+          />
+          <Input
+            label="Password"
+            type="password"
+            onChange={setPassword}
+            value={password}
+            required={true}
+          />
+          <Input
+            label="Confirm your password"
+            type="password"
+            onChange={setRetryPassword}
+            value={retryPassword}
+            required={true}
+          />
+          <CreateAccountDiv>
+            <p>Já possui uma conta? </p>
+            <Link to="/login"> Faça login aqui!</Link>
+          </CreateAccountDiv>
+          <Button type="submit">Cadastrar</Button>
+        </Form>
       </Content>
+      <ModalWrapper
+        modalIsOpen={modalIsOpen}
+        setModalIsOpen={setModalIsOpen}
+        modalState={modalState}
+        text={modalText}
+      />
     </Container>
   );
 };
