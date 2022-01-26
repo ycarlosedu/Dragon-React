@@ -31,6 +31,11 @@ export const InputDiv = styled.div<InputProps>`
       cursor: text;
     }
   }
+
+  & > svg {
+    margin: 5px 15px 0 0;
+    cursor: pointer;
+  }
 `;
 
 export const InputComponent = styled.input`

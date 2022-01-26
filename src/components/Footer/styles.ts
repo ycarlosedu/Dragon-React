@@ -14,4 +14,17 @@ export const Content = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+
+  & > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    & > a > svg {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+    }
+  }
 `;

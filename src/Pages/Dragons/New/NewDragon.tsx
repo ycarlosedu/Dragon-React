@@ -48,6 +48,9 @@ const NewDragon: React.FC = () => {
     } else {
       setModalState('success');
       setModalIsOpen(true);
+      setName('');
+      setType('');
+      setHistories('');
     }
   };
 

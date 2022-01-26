@@ -68,6 +68,7 @@ const CreateLogin: React.FC = () => {
           />
           <Input
             label="Password"
+            name="password"
             type="password"
             onChange={setPassword}
             value={password}
@@ -75,6 +76,7 @@ const CreateLogin: React.FC = () => {
           />
           <Input
             label="Confirm your password"
+            name="password"
             type="password"
             onChange={setRetryPassword}
             value={retryPassword}

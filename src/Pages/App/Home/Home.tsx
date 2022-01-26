@@ -5,6 +5,7 @@ import CardDragon from '../../../components/CardDragon';
 import {
   Container,
   Content,
+  EmptyMessage,
   GridContent,
   InfoNumber,
   SubHeader,
@@ -16,6 +17,7 @@ import Button from '../../../components/Button';
 import ModalWrapper from '../../../components/Modal';
 import { useNavigate } from 'react-router-dom';
 import { deleteDragons } from '../../../services/dragons';
+import { ReactComponent as FeetsImage } from '../../../assets/icons/feets.svg';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -33,7 +35,6 @@ const Home: React.FC = () => {
   const handleDeleteDragon = async () => {
     setModalIsOpen(false);
     const response = await deleteDragons(dragon?.id);
-    console.log(response);
     if (response.status > 400) {
       setModalState('error');
       setModalIsOpen(true);
@@ -68,15 +69,23 @@ const Home: React.FC = () => {
               <span>Dragões cadastrados</span>
             </InfoNumber>
           </SubHeader>
-          <GridContent>
-            {dragons.map((dragon, index) => (
-              <CardDragon
-                key={index}
-                dragon={dragon}
-                deleteDragons={DeleteDragonModal}
-              />
-            ))}
-          </GridContent>
+          {dragons.length > 0 ? (
+            <GridContent>
+              {dragons.map((dragon, index) => (
+                <CardDragon
+                  key={index}
+                  dragon={dragon}
+                  deleteDragons={DeleteDragonModal}
+                />
+              ))}
+            </GridContent>
+          ) : (
+            <EmptyMessage>
+              <h1>Ops! Parece que não há rastros de dragões por aqui.</h1>
+              <h2>Que tal ser o primeiro a cadastrar algum?</h2>
+              <FeetsImage />
+            </EmptyMessage>
+          )}
         </Content>
         <ModalWrapper
           modalIsOpen={modalIsOpen}

@@ -13,6 +13,7 @@ export const Content = styled.div`
   width: 90%;
   margin: 30px 0 50px;
   height: 100%;
+  min-height: 100%;
 `;
 
 export const SubHeader = styled.div`
@@ -38,6 +39,21 @@ export const InfoNumber = styled.div`
 
   & > span {
     font-size: 24px;
+  }
+`;
+
+export const EmptyMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: 80%;
+
+  & > svg {
+    width: 300px;
+    height: 300px;
   }
 `;
 

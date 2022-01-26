@@ -56,6 +56,7 @@ const Login: React.FC = () => {
           />
           <Input
             label="Password"
+            name="password"
             type="password"
             onChange={setPassword}
             value={password}
