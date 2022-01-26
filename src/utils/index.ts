@@ -1,2 +1,3 @@
 import { sortByName } from './sortByName';
-export { sortByName };
+import { DateFormatter } from './dateFormatter';
+export { sortByName, DateFormatter };

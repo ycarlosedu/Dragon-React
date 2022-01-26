@@ -21,7 +21,7 @@ const ModalWrapper: React.FC<ModalProps> = ({
   handleDeleteDragon,
   dragon,
   modalState,
-  text,
+  text = '',
 }) => {
   return (
     <Modal

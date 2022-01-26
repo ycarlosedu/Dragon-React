@@ -23,6 +23,7 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
   const [dragons, setDragons] = useState<getDragonProps[]>([]);
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [modalState, setModalState] = useState<string>('');
   const [dragon, setDragon] = useState<dragonModalProps>();
 
@@ -35,6 +36,10 @@ const Home: React.FC = () => {
   const handleDeleteDragon = async () => {
     setModalIsOpen(false);
     const response = await deleteDragons(dragon?.id);
+    verifyResponse(response);
+  };
+
+  const verifyResponse = (response: any) => {
     if (response.status > 400) {
       setModalState('error');
       setModalIsOpen(true);
@@ -46,9 +51,16 @@ const Home: React.FC = () => {
   };
 
   const loadAPI = async () => {
+    setIsLoaded(false);
     const response = await getDragons();
-    const dragons = sortByName(response.data);
-    setDragons(dragons);
+    if (response.status > 400) {
+      setModalState('error');
+      setModalIsOpen(true);
+    } else {
+      const dragons = sortByName(response.data);
+      setDragons(dragons);
+    }
+    setIsLoaded(true);
   };
 
   useEffect(() => {
@@ -59,34 +71,36 @@ const Home: React.FC = () => {
     <>
       <Header />
       <Container>
-        <Content>
-          <SubHeader>
-            <Button onClick={() => navigate('/new')}>
-              Inserir novo dragão
-            </Button>
-            <InfoNumber>
-              <p>{dragons.length}</p>
-              <span>Dragões cadastrados</span>
-            </InfoNumber>
-          </SubHeader>
-          {dragons.length > 0 ? (
-            <GridContent>
-              {dragons.map((dragon, index) => (
-                <CardDragon
-                  key={index}
-                  dragon={dragon}
-                  deleteDragons={DeleteDragonModal}
-                />
-              ))}
-            </GridContent>
-          ) : (
-            <EmptyMessage>
-              <h1>Ops! Parece que não há rastros de dragões por aqui.</h1>
-              <h2>Que tal ser o primeiro a cadastrar algum?</h2>
-              <FeetsImage />
-            </EmptyMessage>
-          )}
-        </Content>
+        {isLoaded ? (
+          <Content>
+            <SubHeader>
+              <Button onClick={() => navigate('/new')}>
+                Inserir novo dragão
+              </Button>
+              <InfoNumber>
+                <p>{dragons.length}</p>
+                <span>Dragões cadastrados</span>
+              </InfoNumber>
+            </SubHeader>
+            {dragons.length > 0 ? (
+              <GridContent>
+                {dragons.map((dragon, index) => (
+                  <CardDragon
+                    key={index}
+                    dragon={dragon}
+                    deleteDragons={DeleteDragonModal}
+                  />
+                ))}
+              </GridContent>
+            ) : (
+              <EmptyMessage>
+                <h1>Ops! Parece que não há rastros de dragões por aqui.</h1>
+                <h2>Que tal ser o primeiro a cadastrar algum?</h2>
+                <FeetsImage />
+              </EmptyMessage>
+            )}
+          </Content>
+        ) : null}
         <ModalWrapper
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}

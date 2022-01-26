@@ -6,7 +6,7 @@
 
 ## O que foi feito:
 
-Foi pedido por um projeto com tela de login, onde foi implementado com utilização do serviço firebase. Atualmente o projeto conta com rotas e redirecionamentos protegidos por autenticação.
+Foi solicitado um projeto com tela de login e um CRUD de dragões, onde a lógica de autenticação foi implementada com utilização do serviço firebase. Atualmente o projeto conta com rotas e redirecionamentos protegidos por autenticação.
 
 ## Como rodar em sua máquina?
 
@@ -16,7 +16,7 @@ Foi pedido por um projeto com tela de login, onde foi implementado com utilizaç
 - [Node JS LTS](https://nodejs.org/en/download/)
 - [Yarn](https://classic.yarnpkg.com/en/docs/install#windows-stable)
 
-### Antes de seguir as próximas etapas:
+### Antes de rodar:
 
 ```bash
 # Clone this repository
