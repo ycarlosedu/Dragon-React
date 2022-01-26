@@ -8,7 +8,7 @@ import Home from '../Pages/App/Home';
 import NewDragon from '../Pages/Dragons/New';
 import ViewDragon from '../Pages/Dragons/View';
 import Login from '../Pages/App/Login';
-import CreateLogin from '../Pages/App/Login/CreateLogin';
+// import CreateLogin from '../Pages/App/Login/CreateLogin';
 import PrivateRoute from './PrivateRoute';
 
 const Routes: React.FC = () => {
@@ -56,10 +56,10 @@ const Routes: React.FC = () => {
           }
         />
         <Route
-          path="/create-login"
+          path="/login/:params"
           element={
             <PrivateRoute inverse={true}>
-              <CreateLogin />
+              <Login />
             </PrivateRoute>
           }
         />

@@ -2,38 +2,73 @@ import React, { FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router';
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+import { useNavigate, useParams } from 'react-router';
 import Logo from '../../../assets/icons/logo.png';
 
 import { Container, Content, CreateAccountDiv, Form } from './styles';
 import ModalWrapper from '../../../components/Modal';
 
 const Login: React.FC = () => {
+  const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [retryPassword, setRetryPassword] = useState<string>('');
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [modalState, setModalState] = useState<string>('');
   const [modalText, setModalText] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const auth = getAuth();
   const navigate = useNavigate();
+  const { params } = useParams();
 
-  const handleSubmit = (event: FormEvent) => {
+  const SetLocalStorage = (user: any) => {
+    localStorage.setItem('Dragons/Email', email);
+    localStorage.setItem('Dragons/Token', user.uid);
+    navigate('/');
+  };
+
+  const ThrowError = (error: any) => {
+    setModalState('error');
+    setModalText(error.message);
+    setModalIsOpen(true);
+  };
+
+  const handleLogin = (event: FormEvent) => {
+    setIsLoading(true);
     event.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
-        localStorage.setItem('Dragons/Email', email);
-        localStorage.setItem('Dragons/Token', user.uid);
-        navigate('/');
+        SetLocalStorage(userCredential.user);
       })
       .catch((error) => {
-        // const errorCode = error.code;
-        const errorMessage = error.message;
-        setModalState('error');
-        setModalText(errorMessage);
-        setModalIsOpen(true);
+        ThrowError(error);
+        setIsLoading(false);
       });
+  };
+
+  const handleCreateLogin = (event: FormEvent) => {
+    setIsLoading(true);
+    event.preventDefault();
+    if (password === retryPassword) {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          SetLocalStorage(userCredential.user);
+        })
+        .catch((error) => {
+          ThrowError(error);
+        });
+    } else {
+      setModalState('error');
+      setModalText('Os dois campos de senha devem estar iguais!');
+      setModalIsOpen(true);
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -42,11 +77,21 @@ const Login: React.FC = () => {
         <div>
           <img src={Logo} alt="" />
           <h1>
-            Faça seu login, veja nossos dragões cadastrados e também nos mostre
-            os seus!
+            {params
+              ? 'Cria sua conta e comece a descobrir novos dragões todos os dias!'
+              : 'Faça seu login, veja nossos dragões cadastrados e também nos mostre os seus!'}
           </h1>
         </div>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={params ? handleCreateLogin : handleLogin}>
+          {params ? (
+            <Input
+              label="Name"
+              type="text"
+              onChange={setName}
+              value={name}
+              required={true}
+            />
+          ) : null}
           <Input
             label="Email"
             type="email"
@@ -62,11 +107,32 @@ const Login: React.FC = () => {
             value={password}
             required={true}
           />
+          {params ? (
+            <Input
+              label="Confirm your password"
+              name="password"
+              type="password"
+              onChange={setRetryPassword}
+              value={retryPassword}
+              required={true}
+            />
+          ) : null}
           <CreateAccountDiv>
-            <p>Ainda não é cadastrado? </p>
-            <Link to="/create-login"> Crie uma conta aqui!</Link>
+            {params ? (
+              <>
+                <p>Já possui uma conta? </p>
+                <Link to="/login"> Faça login aqui!</Link>
+              </>
+            ) : (
+              <>
+                <p>Ainda não é cadastrado? </p>
+                <Link to="/login/create"> Crie uma conta aqui!</Link>
+              </>
+            )}
           </CreateAccountDiv>
-          <Button type="submit">Entrar</Button>
+          <Button isLoading={isLoading} type="submit">
+            {params ? 'Cadastrar' : 'Entrar'}
+          </Button>
         </Form>
       </Content>
       <ModalWrapper

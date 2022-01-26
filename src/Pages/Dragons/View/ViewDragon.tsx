@@ -65,7 +65,7 @@ const ViewDragon: React.FC = () => {
             </Button>
             <Content>
               <InfosDiv>
-                <h2>FOTO</h2>
+                <h2>IMAGEM</h2>
                 <DivImage>
                   <img src={dragonImg} alt="Imagem do dragão" />
                 </DivImage>
