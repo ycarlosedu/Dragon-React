@@ -18,6 +18,7 @@ import ModalWrapper from '../../../components/Modal';
 import { useNavigate } from 'react-router-dom';
 import { deleteDragons } from '../../../services/dragons';
 import { ReactComponent as FeetsImage } from '../../../assets/icons/feets.svg';
+import Loader from '../../../components/Loader';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -100,7 +101,9 @@ const Home: React.FC = () => {
               </EmptyMessage>
             )}
           </Content>
-        ) : null}
+        ) : (
+          <Loader />
+        )}
         <ModalWrapper
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}

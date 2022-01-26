@@ -1,24 +1,27 @@
-import React from 'react';
-import { ButtonWrapper } from './styles';
+import React, { ButtonHTMLAttributes } from 'react';
+import { ButtonWrapper, Tooltip } from './styles';
 
-export type ButtonProps = {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: string;
   onClick?: any;
-  type?: string;
-};
+  tooltip?: string;
+}
 
 const Button: React.FC<ButtonProps> = ({
   children,
   variant,
   onClick,
   type,
+  tooltip,
 }) => {
   return (
     <ButtonWrapper
       variant={variant}
       onClick={onClick}
       type={type ? 'submit' : 'button'}
+      tooltip={tooltip}
     >
+      {tooltip && <Tooltip>{tooltip}</Tooltip>}
       {children}
     </ButtonWrapper>
   );

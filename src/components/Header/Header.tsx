@@ -36,7 +36,7 @@ const Header: React.FC = () => {
         <UserGroupDiv>
           <p>{userName()}</p>
           <img src={UserIcon} alt="" />
-          <Button variant="icon" onClick={handleSignOut}>
+          <Button tooltip="Sair" variant="icon" onClick={handleSignOut}>
             <LogoutIcon />
           </Button>
         </UserGroupDiv>
