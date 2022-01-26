@@ -38,7 +38,9 @@ const CreateLogin: React.FC = () => {
           setModalIsOpen(true);
         });
     } else {
-      alert('Os dois campos de senha devem estar iguais!');
+      setModalState('error');
+      setModalText('Os dois campos de senha devem estar iguais!');
+      setModalIsOpen(true);
     }
   };
 

@@ -30,7 +30,7 @@ api.interceptors.response.use(
       const errorMessage =
         'Não foi possível conectar-se neste momento. Tente novamente mais tarde!';
 
-      const serverErrorResponse = { title: errorMessage };
+      const serverErrorResponse = { status: 500, title: errorMessage };
 
       return Promise.reject(serverErrorResponse);
     }
