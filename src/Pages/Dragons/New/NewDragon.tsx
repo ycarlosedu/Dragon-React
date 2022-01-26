@@ -18,11 +18,14 @@ const NewDragon: React.FC = () => {
   const [histories, setHistories] = useState<string>('');
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [modalState, setModalState] = useState<string>('');
+  const [modalText, setModalText] = useState<string>('');
   const navigate = useNavigate();
   const { id } = useParams();
 
   const addNewDragon = async (event: FormEvent) => {
+    setModalText('');
     event.preventDefault();
+
     const dragon = {
       name: name,
       type: type,
@@ -30,11 +33,9 @@ const NewDragon: React.FC = () => {
     };
     if (id) {
       const response = await putDragons(id, dragon);
-      console.log(response);
       verifyResponse(response);
     } else {
       const response = await postDragons(dragon);
-      console.log(response);
       verifyResponse(response);
     }
   };
@@ -43,6 +44,7 @@ const NewDragon: React.FC = () => {
     if (response.status > 400) {
       setModalState('error');
       setModalIsOpen(true);
+      setModalText(response.title);
     } else {
       setModalState('success');
       setModalIsOpen(true);
@@ -108,6 +110,7 @@ const NewDragon: React.FC = () => {
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}
           modalState={modalState}
+          text={modalText}
         />
       </Container>
       <Footer />
