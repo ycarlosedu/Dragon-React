@@ -37,7 +37,6 @@ const CreateLogin: React.FC = () => {
           setModalText(errorMessage);
           setModalIsOpen(true);
         });
-      localStorage.setItem(email, name);
     } else {
       alert('Os dois campos de senha devem estar iguais!');
     }
@@ -49,8 +48,7 @@ const CreateLogin: React.FC = () => {
         <div>
           <img src={Logo} alt="" />
           <h1>
-            Faça seu login, veja nossos dragões cadastrados e também nos mostre
-            os seus!
+            Cria sua conta e comece a descobrir novos dragões todos os dias!
           </h1>
         </div>
         <Form onSubmit={handleSubmit}>

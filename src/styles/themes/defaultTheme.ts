@@ -12,4 +12,7 @@ export default {
   White: '#fff',
   Black: '#09090a',
   Text: '#a8a8b3',
+  GradientBlue: 'linear-gradient(225deg, #00aaff, #09090a)',
+  GradientRed: 'linear-gradient(225deg, #ce4a4a, #09090a)',
+  GradientGrey: 'linear-gradient(225deg, #323238, #09090a)',
 };

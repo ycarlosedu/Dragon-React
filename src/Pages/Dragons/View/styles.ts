@@ -18,28 +18,17 @@ export const Content = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-`;
 
-export const PhotosDiv = styled.div`
-  width: 40%;
-  height: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  padding: 30px 0;
-  border-radius: 15px;
-  background: ${(props) =>
-    `linear-gradient(225deg, ${props.theme.Borders} 0%, ${props.theme.Black}) 100%`};
-
-  & img {
-    width: 70%;
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
   }
 `;
 
 export const InfosDiv = styled.div`
   width: 40%;
+  min-width: 350px;
   height: 80%;
   display: flex;
   flex-direction: column;
@@ -47,16 +36,38 @@ export const InfosDiv = styled.div`
   justify-content: space-between;
   padding: 30px 0;
   border-radius: 15px;
-  background: ${(props) =>
-    `linear-gradient(225deg, ${props.theme.Borders} 0%, ${props.theme.Black}) 100%`};
+  background: ${(props) => props.theme.GradientGrey};
 
-  & div {
-    width: 100%;
+  @media screen and (max-width: 900px) {
     height: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    margin-bottom: 10%;
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 90%;
+    min-width: 200px;
+  }
+`;
+
+export const DivTexts = styled.div`
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 10%;
+`;
+
+export const DivImage = styled.div`
+  display: grid;
+  place-items: center;
+  height: 100%;
+
+  & > img {
+    width: 70%;
+
+    @media screen and (max-width: 900px) {
+      width: 150px;
+    }
   }
 `;

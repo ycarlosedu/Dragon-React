@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const Card = styled.div`
   width: 50%;
+  min-width: 250px;
   height: 300px;
-  background: ${(props) =>
-    `linear-gradient(225deg, ${props.theme.Borders} 0%, ${props.theme.Black}) 100%`};
+  background: ${(props) => props.theme.GradientGrey};
   border: 1px solid ${(props) => props.theme.Borders};
   border-radius: 15px;
   display: flex;

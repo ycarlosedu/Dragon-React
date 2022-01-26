@@ -1,8 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { ReactComponent as Close } from '../../assets/icons/close.svg';
 import Button from '../Button';
-import { ButtonsModal, CancelModal, InfosModal } from './styles';
+import { ButtonsModal, InfosModal } from './styles';
 import { dragonModalProps } from '../../Types/dragons';
 
 Modal.setAppElement('#root');
@@ -39,7 +38,10 @@ const ModalWrapper: React.FC<ModalProps> = ({
             <h2>Sucesso!</h2>
             <h3>A operação foi realizada sem problemas.</h3>
           </InfosModal>
-          <Button onClick={() => setModalIsOpen(false)}>Fechar</Button>
+
+          <ButtonsModal>
+            <Button onClick={() => setModalIsOpen(false)}>Fechar</Button>
+          </ButtonsModal>
         </>
       ) : modalState === 'error' ? (
         <>
@@ -49,7 +51,10 @@ const ModalWrapper: React.FC<ModalProps> = ({
               {text !== '' ? text : 'Não foi possível realizar a operação.'}
             </h3>
           </InfosModal>
-          <Button onClick={() => setModalIsOpen(false)}>Fechar</Button>
+
+          <ButtonsModal>
+            <Button onClick={() => setModalIsOpen(false)}>Fechar</Button>
+          </ButtonsModal>
         </>
       ) : (
         <>
@@ -59,6 +64,7 @@ const ModalWrapper: React.FC<ModalProps> = ({
             <p>Nome: {dragon?.name}</p>
             <p>Tipo: {dragon?.type}</p>
           </InfosModal>
+
           <ButtonsModal>
             <Button onClick={() => setModalIsOpen(false)}>Cancelar</Button>
             <Button variant="warning" onClick={handleDeleteDragon}>

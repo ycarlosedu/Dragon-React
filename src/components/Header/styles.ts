@@ -15,6 +15,10 @@ export const Content = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+
+  @media screen and (max-width: 500px) {
+    width: 90%;
+  }
 `;
 
 export const UserGroupDiv = styled.div`
@@ -27,6 +31,10 @@ export const UserGroupDiv = styled.div`
     padding: 10px 15px;
     border: 1px solid ${(props) => props.theme.Borders};
     border-radius: 10px;
+
+    @media screen and (max-width: 400px) {
+      display: none;
+    }
   }
 `;
 
@@ -40,5 +48,9 @@ export const LogoGroupDiv = styled(Link)`
 
   & img:nth-child(2) {
     width: 130px;
+
+    @media screen and (max-width: 650px) {
+      display: none;
+    }
   }
 `;

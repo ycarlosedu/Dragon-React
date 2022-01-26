@@ -6,16 +6,26 @@ export const InfosModal = styled.div`
   flex-direction: column;
   gap: 15px;
   margin-bottom: 30px;
-`;
 
-export const CancelModal = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
+  @media screen and (max-width: 550px) {
+    & > h2 {
+      font-size: 32px;
+    }
+  }
 `;
 
 export const ButtonsModal = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
   gap: 20px;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 550px) {
+    flex-direction: column;
+
+    & > button {
+      width: 100%;
+    }
+  }
 `;

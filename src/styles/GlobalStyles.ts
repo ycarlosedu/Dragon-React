@@ -56,7 +56,7 @@ export default createGlobalStyle`
 
   // MODAL STYLE
   .Modal {
-    min-width: 500px;
+    width: 500px;
     background-color: ${(props) => props.theme.Background2};
     padding: 40px;
     border-radius: 10px;
@@ -65,12 +65,17 @@ export default createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media screen and (max-width: 600px){
+      width: 70%;
+    }
   }
 
   .Overlay {
     position: fixed;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     top: 0;
     left: 0;
     right: 0;

@@ -8,8 +8,8 @@ export const ButtonWrapper = styled.button<ButtonProps>`
     props.variant === 'icon'
       ? props.theme.Background
       : props.variant === 'warning'
-      ? `linear-gradient(225deg, ${props.theme.Red}, ${props.theme.Black})`
-      : `linear-gradient(225deg, ${props.theme.Blue}, ${props.theme.Black})`};
+      ? props.theme.GradientRed
+      : props.theme.GradientBlue};
   color: white;
   border: none;
   border-radius: 8px;

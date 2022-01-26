@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router';
 import Button from '../../../components/Button';
 import { getDragonsByID } from '../../../services/dragons';
 
-import { Container, Content, InfosDiv, PhotosDiv } from './styles';
+import { Container, Content, DivImage, DivTexts, InfosDiv } from './styles';
 
 const ViewDragon: React.FC = () => {
   const [name, setName] = useState<string>('');
@@ -45,17 +45,19 @@ const ViewDragon: React.FC = () => {
           Voltar
         </Button>
         <Content>
-          <PhotosDiv>
+          <InfosDiv>
             <h2>FOTO</h2>
-            <img src={DragonImage} alt="Imagem do dragão" />
-          </PhotosDiv>
+            <DivImage>
+              <img src={DragonImage} alt="Imagem do dragão" />
+            </DivImage>
+          </InfosDiv>
           <InfosDiv>
             <h2>INFOS</h2>
-            <div>
+            <DivTexts>
               <h3>Nome: {name}</h3>
               <h3>Tipo: {type}</h3>
               <h3>Descrição: {histories}</h3>
-            </div>
+            </DivTexts>
           </InfosDiv>
         </Content>
       </Container>

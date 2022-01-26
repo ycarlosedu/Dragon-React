@@ -14,5 +14,8 @@ declare module 'styled-components' {
     White: string;
     Black: string;
     Text: string;
+    GradientBlue: string;
+    GradientRed: string;
+    GradientGrey: string;
   }
 }
