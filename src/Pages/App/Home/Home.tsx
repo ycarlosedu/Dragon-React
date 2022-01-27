@@ -20,14 +20,18 @@ import { dragonModalProps, getDragonProps } from '../../../Types/dragons';
 import { sortByName } from '../../../utils';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as FeetsImage } from '../../../assets/icons/feets.svg';
+import ReactPaginate from 'react-paginate';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const [dragons, setDragons] = useState<getDragonProps[]>([]);
+  const [dragons, setDragons] = useState<any>([]);
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [modalState, setModalState] = useState<string>('');
   const [dragon, setDragon] = useState<dragonModalProps>();
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
 
   const DeleteDragonModal = (id: number, name: string, type: string) => {
     setModalState('');
@@ -63,11 +67,23 @@ const Home: React.FC = () => {
       setDragons(dragons);
     }
     setIsLoaded(true);
+    setItemOffset(0);
   };
 
   useEffect(() => {
     loadAPI();
   }, []);
+
+  useEffect(() => {
+    const endOffset = itemOffset + 10;
+    setCurrentItems(dragons.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(dragons.length / 10));
+  }, [itemOffset, dragons]);
+
+  const handlePageClick = (event: any) => {
+    const newOffset = (event.selected * 10) % dragons.length;
+    setItemOffset(newOffset);
+  };
 
   return (
     <>
@@ -84,16 +100,27 @@ const Home: React.FC = () => {
                 <span>Dragões cadastrados</span>
               </InfoNumber>
             </SubHeader>
-            {dragons.length > 0 ? (
-              <GridContent>
-                {dragons.map((dragon, index) => (
-                  <CardDragon
-                    key={index}
-                    dragon={dragon}
-                    deleteDragons={DeleteDragonModal}
-                  />
-                ))}
-              </GridContent>
+            {currentItems?.length > 0 ? (
+              <>
+                <GridContent>
+                  {currentItems?.map((dragon, index) => (
+                    <CardDragon
+                      key={index}
+                      dragon={dragon}
+                      deleteDragons={DeleteDragonModal}
+                    />
+                  ))}
+                </GridContent>
+                <ReactPaginate
+                  breakLabel="..."
+                  nextLabel=">"
+                  onPageChange={handlePageClick}
+                  pageRangeDisplayed={5}
+                  pageCount={pageCount}
+                  previousLabel="< "
+                  renderOnZeroPageCount={undefined}
+                />
+              </>
             ) : (
               <EmptyMessage>
                 <h1>Ops! Parece que não há rastros de dragões por aqui.</h1>

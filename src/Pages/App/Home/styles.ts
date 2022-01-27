@@ -12,8 +12,27 @@ export const Container = styled.main`
 export const Content = styled.div`
   width: 90%;
   margin: 30px 0 50px;
-  height: 100%;
   min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  & > ul {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    gap: 30px;
+    list-style: none;
+    padding-top: 20px;
+
+    & > li {
+      border-radius: 15px;
+      border-bottom: 1px solid ${(props) => props.theme.Borders};
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  }
 `;
 
 export const SubHeader = styled.div`
