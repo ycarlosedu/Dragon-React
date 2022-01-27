@@ -1,16 +1,21 @@
 import React, { FormEvent, useEffect, useState } from 'react';
-import Header from '../../../components/Header';
-import Footer from '../../../components/Footer';
+import { useNavigate, useParams } from 'react-router';
+import * as Yup from 'yup';
 import { Container, Content, Form } from './styles';
-import Input from '../../../components/Input';
-import Button from '../../../components/Button';
+import {
+  Header,
+  Footer,
+  Input,
+  Button,
+  ModalWrapper,
+} from '../../../components';
+import { getValidationErrors } from '../../../utils';
 import {
   getDragonsByID,
   postDragons,
   putDragons,
 } from '../../../services/dragons';
-import { useNavigate, useParams } from 'react-router';
-import ModalWrapper from '../../../components/Modal';
+import { DragonProps } from '../../../Types/dragons';
 
 const NewDragon: React.FC = () => {
   const [name, setName] = useState<string>('');
@@ -19,26 +24,9 @@ const NewDragon: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [modalState, setModalState] = useState<string>('');
   const [modalText, setModalText] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const { id } = useParams();
-
-  const addNewDragon = async (event: FormEvent) => {
-    setModalText('');
-    event.preventDefault();
-
-    const dragon = {
-      name: name,
-      type: type,
-      histories: histories,
-    };
-    if (id) {
-      const response = await putDragons(id, dragon);
-      verifyResponse(response);
-    } else {
-      const response = await postDragons(dragon);
-      verifyResponse(response);
-    }
-  };
 
   const verifyResponse = (response: any) => {
     if (response.status > 400) {
@@ -48,9 +36,66 @@ const NewDragon: React.FC = () => {
     } else {
       setModalState('success');
       setModalIsOpen(true);
-      setName('');
-      setType('');
-      setHistories('');
+      if (!id) {
+        setName('');
+        setType('');
+        setHistories('');
+      }
+    }
+  };
+
+  const addNewDragon = async (event: FormEvent) => {
+    event.preventDefault();
+    setModalText('');
+    setIsLoading(true);
+
+    try {
+      const schema = Yup.object().shape({
+        name: Yup.string()
+          .max(40, 'No máximo 40 caracteres')
+          .matches(
+            /^(?!\s*$)[-a-zA-Z0-9_:,.' ']/,
+            'Um ou mais caracteres digitados não são permitidos!',
+          )
+          .required('Este campo é obrigatório!'),
+        type: Yup.string()
+          .max(40, 'No máximo 40 caracteres')
+          .matches(
+            /^(?!\s*$)[-a-zA-Z0-9_:,.' ']/,
+            'Um ou mais caracteres digitados não são permitidos!',
+          )
+          .required('Este campo é obrigatório!'),
+        histories: Yup.string().max(200, 'No máximo 200 caracteres'),
+      });
+      const Dragon: DragonProps = {
+        name: name,
+        type: type,
+        histories: histories,
+      };
+      await schema.validate(Dragon, {
+        abortEarly: false,
+      });
+
+      if (id) {
+        const response = await putDragons(id, Dragon);
+        verifyResponse(response);
+      } else {
+        const response = await postDragons(Dragon);
+        verifyResponse(response);
+      }
+
+      setIsLoading(false);
+    } catch (errors) {
+      if (errors instanceof Yup.ValidationError) {
+        const errorMessages = getValidationErrors(errors);
+        setIsLoading(false);
+        setModalState('error');
+        setModalIsOpen(true);
+        errorMessages.name
+          ? setModalText(`Name: ${errorMessages.name}`)
+          : setModalText(`Type: ${errorMessages.type}`);
+        return;
+      }
     }
   };
 
@@ -106,7 +151,9 @@ const NewDragon: React.FC = () => {
               onChange={setHistories}
               value={histories}
             />
-            <Button type="submit">{id ? 'Salvar' : 'Adicionar dragão'}</Button>
+            <Button isLoading={isLoading} type="submit">
+              {id ? 'Salvar' : 'Adicionar dragão'}
+            </Button>
           </Form>
         </Content>
         <ModalWrapper

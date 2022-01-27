@@ -1,4 +1,4 @@
-export const DateFormatter = (date: string) => {
+const DateFormatter = (date: string) => {
   const oldData = new Date(date);
   const formatter =
     oldData.getFullYear() +
@@ -9,3 +9,5 @@ export const DateFormatter = (date: string) => {
 
   return formatter.split('-').reverse().join('/');
 };
+
+export default DateFormatter;

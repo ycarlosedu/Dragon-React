@@ -1,28 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../../../components/Header';
-import Footer from '../../../components/Footer';
+import { useNavigate, useParams } from 'react-router';
+import { Container, Content, DivImage, DivTexts, InfosDiv } from './styles';
+import { Header, Footer, Button, Loader } from '../../../components';
+import { DateFormatter } from '../../../utils';
+import { getDragonsByID } from '../../../services/dragons';
 import DragonImage from '../../../assets/dragons/0.png';
 import DragonImage1 from '../../../assets/dragons/1.png';
 import DragonImage2 from '../../../assets/dragons/2.png';
 import DragonImage3 from '../../../assets/dragons/3.png';
 import DragonImage4 from '../../../assets/dragons/4.png';
-import { useNavigate, useParams } from 'react-router';
-import Button from '../../../components/Button';
-import { getDragonsByID } from '../../../services/dragons';
-
-import { Container, Content, DivImage, DivTexts, InfosDiv } from './styles';
-import { DateFormatter } from '../../../utils';
-import Loader from '../../../components/Loader';
-
-interface DragonProps {
-  name: string;
-  type: string;
-  histories: string;
-  createdAt: Date;
-}
+import { getDragonProps } from '../../../Types/dragons';
 
 const ViewDragon: React.FC = () => {
-  const [dragon, setDragon] = useState<DragonProps | any>();
+  const [dragon, setDragon] = useState<getDragonProps | any>();
   const [dragonImg, setDragonImg] = useState<any>();
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -31,6 +21,7 @@ const ViewDragon: React.FC = () => {
   const GetDragonInfo = async () => {
     const response = await getDragonsByID(id);
     setDragon(response.data);
+    setIsLoaded(true);
   };
 
   useEffect(() => {
@@ -46,7 +37,6 @@ const ViewDragon: React.FC = () => {
     ];
     var indexSelected = Math.floor(Math.random() * img.length);
     setDragonImg(img[indexSelected]);
-    setIsLoaded(true);
   }, [id]);
 
   return (

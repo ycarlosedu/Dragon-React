@@ -1,20 +1,16 @@
 import React, { FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../../components/Button';
-import Input from '../../../components/Input';
+import { useNavigate, useParams } from 'react-router';
+import { Container, Content, CreateAccountDiv, Form } from './styles';
+import { Button, Input, ModalWrapper } from '../../../components';
 import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { useNavigate, useParams } from 'react-router';
 import Logo from '../../../assets/icons/logo.png';
 
-import { Container, Content, CreateAccountDiv, Form } from './styles';
-import ModalWrapper from '../../../components/Modal';
-
 const Login: React.FC = () => {
-  const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [retryPassword, setRetryPassword] = useState<string>('');
@@ -83,15 +79,6 @@ const Login: React.FC = () => {
           </h1>
         </div>
         <Form onSubmit={params ? handleCreateLogin : handleLogin}>
-          {params ? (
-            <Input
-              label="Name"
-              type="text"
-              onChange={setName}
-              value={name}
-              required={true}
-            />
-          ) : null}
           <Input
             label="Email"
             type="email"

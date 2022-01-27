@@ -8,7 +8,7 @@ export interface getDragonProps {
   name: string;
   type: string;
   histories: string | string[];
-  id: number;
+  id?: number;
   createdAt: Date;
 }
 

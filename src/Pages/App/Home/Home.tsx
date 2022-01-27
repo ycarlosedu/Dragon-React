@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../../../components/Header';
-import Footer from '../../../components/Footer';
-import CardDragon from '../../../components/CardDragon';
+import {
+  Header,
+  Footer,
+  CardDragon,
+  Button,
+  ModalWrapper,
+  Loader,
+} from '../../../components';
 import {
   Container,
   Content,
@@ -10,15 +15,11 @@ import {
   InfoNumber,
   SubHeader,
 } from './styles';
-import { getDragons } from '../../../services/dragons';
+import { getDragons, deleteDragons } from '../../../services/dragons';
 import { dragonModalProps, getDragonProps } from '../../../Types/dragons';
 import { sortByName } from '../../../utils';
-import Button from '../../../components/Button';
-import ModalWrapper from '../../../components/Modal';
 import { useNavigate } from 'react-router-dom';
-import { deleteDragons } from '../../../services/dragons';
 import { ReactComponent as FeetsImage } from '../../../assets/icons/feets.svg';
-import Loader from '../../../components/Loader';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();

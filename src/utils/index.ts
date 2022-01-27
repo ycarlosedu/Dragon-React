@@ -1,3 +1,4 @@
-import { sortByName } from './sortByName';
-import { DateFormatter } from './dateFormatter';
-export { sortByName, DateFormatter };
+import sortByName from './sortByName';
+import DateFormatter from './dateFormatter';
+import getValidationErrors from './getValidationErrors';
+export { sortByName, DateFormatter, getValidationErrors };

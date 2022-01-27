@@ -5,10 +5,8 @@ import {
   Route,
 } from 'react-router-dom';
 import Home from '../Pages/App/Home';
-import NewDragon from '../Pages/Dragons/New';
-import ViewDragon from '../Pages/Dragons/View';
-import Login from '../Pages/App/Login';
-// import CreateLogin from '../Pages/App/Login/CreateLogin';
+import { NewDragon, ViewDragon } from '../Pages/Dragons';
+import { Login } from '../Pages/App';
 import PrivateRoute from './PrivateRoute';
 
 const Routes: React.FC = () => {
@@ -75,17 +73,5 @@ const Routes: React.FC = () => {
     </Router>
   );
 };
-
-class RoutesPaths {
-  static login = '/login';
-  static register = '/register';
-  static completedRegister = '/completed-register';
-  static home = '/home';
-  static newDragon = '/dragon-add';
-  static editDragon = '/dragon-edit';
-  static viewDragon = '/dragon-detail';
-  static notFound = '*';
-}
-export { RoutesPaths };
 
 export default Routes;
