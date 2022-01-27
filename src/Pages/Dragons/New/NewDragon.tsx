@@ -132,21 +132,21 @@ const NewDragon: React.FC = () => {
           <h1>Cadastre seus dragões aqui e compartilhe-os com o mundo!</h1>
           <Form onSubmit={addNewDragon}>
             <Input
-              label="name"
+              label="Nome"
               type="text"
               onChange={setName}
               value={name}
               required={true}
             />
             <Input
-              label="type"
+              label="Tipo"
               type="text"
               onChange={setType}
               value={type}
               required={true}
             />
             <Input
-              label="histories"
+              label="Descrição"
               type="text-area"
               onChange={setHistories}
               value={histories}

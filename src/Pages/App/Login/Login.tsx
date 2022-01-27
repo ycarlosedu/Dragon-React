@@ -80,14 +80,14 @@ const Login: React.FC = () => {
         </div>
         <Form onSubmit={params ? handleCreateLogin : handleLogin}>
           <Input
-            label="Email"
+            label="E-mail"
             type="email"
             onChange={setEmail}
             value={email}
             required={true}
           />
           <Input
-            label="Password"
+            label="Senha"
             name="password"
             type="password"
             onChange={setPassword}
@@ -96,7 +96,7 @@ const Login: React.FC = () => {
           />
           {params ? (
             <Input
-              label="Confirm your password"
+              label="Confirme sua senha"
               name="password"
               type="password"
               onChange={setRetryPassword}
