@@ -16,7 +16,7 @@ import {
   SubHeader,
 } from './styles';
 import { getDragons, deleteDragons } from '../../../services/dragons';
-import { dragonModalProps, getDragonProps } from '../../../Types/dragons';
+import { dragonModalProps } from '../../../Types/dragons';
 import { sortByName } from '../../../utils';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as FeetsImage } from '../../../assets/icons/feets.svg';
@@ -29,9 +29,9 @@ const Home: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [modalState, setModalState] = useState<string>('');
   const [dragon, setDragon] = useState<dragonModalProps>();
-  const [currentItems, setCurrentItems] = useState([]);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
+  const [currentItems, setCurrentItems] = useState<typeof dragons[]>([]);
+  const [pageCount, setPageCount] = useState<number>(0);
+  const [itemOffset, setItemOffset] = useState<number>(0);
 
   const DeleteDragonModal = (id: number, name: string, type: string) => {
     setModalState('');
