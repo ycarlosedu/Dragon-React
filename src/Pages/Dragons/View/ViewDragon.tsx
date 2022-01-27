@@ -71,7 +71,11 @@ const ViewDragon: React.FC = () => {
                     <h3>Tipo: </h3>
                     <p>{dragon?.type}</p>
                     <h3>Descrição: </h3>
-                    <p>{dragon?.histories || 'NA'}</p>
+                    {Array.isArray(dragon?.histories) ? (
+                      <p>{dragon?.histories[0] || 'NA'}</p>
+                    ) : (
+                      <p>{dragon?.histories || 'NA'}</p>
+                    )}
                   </DivTexts>
                 ) : null}
               </InfosDiv>

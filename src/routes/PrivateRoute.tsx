@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { Navigate } from 'react-router';
 
 type PrivateProps = {
-  children: any;
+  children: ReactElement;
   inverse?: boolean;
 };
 

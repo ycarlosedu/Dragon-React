@@ -86,6 +86,7 @@ export const DivImage = styled.div`
     border-radius: 15px;
     background: ${(props) => props.theme.GradientGrey};
     width: 400px;
+    height: 300px;
 
     @media screen and (max-width: 950px) {
       width: 300px;
@@ -93,6 +94,7 @@ export const DivImage = styled.div`
 
     @media screen and (max-width: 350px) {
       width: 200px;
+      height: 200px;
     }
   }
 `;

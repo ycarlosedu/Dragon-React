@@ -1,8 +1,8 @@
 import React, { createContext, useContext } from 'react';
 
 interface AuthContextState {
-  userName: any;
-  isAuthenticated: any;
+  userName: () => string;
+  isAuthenticated: () => boolean;
 }
 
 const AuthContext = createContext<AuthContextState>({} as AuthContextState);
