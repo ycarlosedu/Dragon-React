@@ -22,6 +22,11 @@ export const Content = styled.div`
     flex-direction: column;
     align-items: center;
     text-align: center;
+
+    & > img {
+      width: 100%;
+      max-width: 200px;
+    }
   }
 
   @media screen and (max-width: 1000px) {

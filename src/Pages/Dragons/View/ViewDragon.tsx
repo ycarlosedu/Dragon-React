@@ -74,10 +74,14 @@ const ViewDragon: React.FC = () => {
                 <h2>INFOS</h2>
                 {dragon ? (
                   <DivTexts>
-                    <h3>Data de criação: {DateFormatter(dragon?.createdAt)}</h3>
-                    <h3>Nome: {dragon?.name}</h3>
-                    <h3>Tipo: {dragon?.type}</h3>
-                    <h3>Descrição: {dragon?.histories}</h3>
+                    <h3>Data de criação: </h3>
+                    <p>{DateFormatter(dragon?.createdAt)}</p>
+                    <h3>Nome: </h3>
+                    <p>{dragon?.name}</p>
+                    <h3>Tipo: </h3>
+                    <p>{dragon?.type}</p>
+                    <h3>Descrição: </h3>
+                    <p>{dragon?.histories || 'NA'}</p>
                   </DivTexts>
                 ) : null}
               </InfosDiv>

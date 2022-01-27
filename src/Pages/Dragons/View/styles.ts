@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.main`
   width: 100%;
-  height: calc(100vh - 160px);
+  height: 100%;
+  min-height: calc(100vh - 160px);
   background: ${(props) => props.theme.Background};
   display: flex;
   flex-direction: column;
@@ -19,10 +20,12 @@ export const Content = styled.div`
   align-items: flex-start;
   justify-content: space-between;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 950px) {
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 30px;
+    height: 90%;
   }
 `;
 
@@ -35,11 +38,11 @@ export const InfosDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 30px 0;
-  border-radius: 15px;
-  background: ${(props) => props.theme.GradientGrey};
+  gap: 10px;
 
-  @media screen and (max-width: 900px) {
-    height: 50%;
+  @media screen and (max-width: 950px) {
+    justify-content: flex-start;
+    padding: 0;
   }
 
   @media screen and (max-width: 400px) {
@@ -50,24 +53,46 @@ export const InfosDiv = styled.div`
 
 export const DivTexts = styled.div`
   width: 100%;
-  height: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
   margin-bottom: 10%;
+
+  & > h3 {
+    margin-bottom: 5px;
+  }
+
+  & > p {
+    border-radius: 15px;
+    background: ${(props) => props.theme.GradientGrey};
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  & p:nth-last-child(1) {
+    margin-bottom: 0;
+  }
 `;
 
 export const DivImage = styled.div`
-  display: grid;
-  place-items: center;
-  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 
   & > img {
-    width: 70%;
+    border-radius: 15px;
+    background: ${(props) => props.theme.GradientGrey};
+    width: 400px;
 
-    @media screen and (max-width: 900px) {
-      width: 150px;
+    @media screen and (max-width: 950px) {
+      width: 300px;
+    }
+
+    @media screen and (max-width: 350px) {
+      width: 200px;
     }
   }
 `;

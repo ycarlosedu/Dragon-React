@@ -39,9 +39,9 @@ const Input: React.FC<InputProps> = ({
         onBlur={() => setIsFocused(false)}
       />
       {name === 'password' && inputType === 'password' ? (
-        <ViewIcon color="#000" onClick={() => setInputType('text')} />
+        <ViewOffIcon color="#000" onClick={() => setInputType('text')} />
       ) : name === 'password' && inputType === 'text' ? (
-        <ViewOffIcon color="#000" onClick={() => setInputType('password')} />
+        <ViewIcon color="#000" onClick={() => setInputType('password')} />
       ) : null}
     </InputDiv>
   );

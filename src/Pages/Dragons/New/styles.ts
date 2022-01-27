@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.main`
   width: 100%;
   min-width: 100vw;
-  height: calc(100vh - 160px);
+  height: 100%;
+  min-height: calc(100vh - 160px);
   background: ${(props) => props.theme.Background};
   display: flex;
   justify-content: center;
@@ -12,7 +13,7 @@ export const Container = styled.main`
 export const Content = styled.div`
   width: 80%;
   margin: 30px 0 50px;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,9 +24,14 @@ export const Content = styled.div`
     width: 90%;
   }
 
-  @media screen and (max-width: 500px) {
-    & > h1 {
+  & > h1 {
+    @media screen and (max-width: 500px) {
       font-size: 22px;
+    }
+
+    @media screen and (max-width: 300px) {
+      font-size: 16px;
+      margin-bottom: 20px;
     }
   }
 `;

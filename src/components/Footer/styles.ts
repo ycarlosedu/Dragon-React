@@ -25,6 +25,16 @@ export const Content = styled.div`
       width: 50px;
       height: 50px;
       cursor: pointer;
+
+      @media screen and (max-width: 600px) {
+        width: 30px;
+        height: 30px;
+      }
     }
+  }
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    justify-content: center;
   }
 `;
