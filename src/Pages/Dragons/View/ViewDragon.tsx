@@ -4,11 +4,6 @@ import { Container, Content, DivImage, DivTexts, InfosDiv } from './styles';
 import { Header, Footer, Button, Loader } from '../../../components';
 import { DateFormatter } from '../../../utils';
 import { getDragonsByID } from '../../../services/dragons';
-import DragonImage from '../../../assets/dragons/0.png';
-import DragonImage1 from '../../../assets/dragons/1.png';
-import DragonImage2 from '../../../assets/dragons/2.png';
-import DragonImage3 from '../../../assets/dragons/3.png';
-import DragonImage4 from '../../../assets/dragons/4.png';
 import { getDragonProps } from '../../../Types/dragons';
 
 const ViewDragon: React.FC = () => {
@@ -28,16 +23,14 @@ const ViewDragon: React.FC = () => {
     if (id !== undefined) {
       GetDragonInfo();
     }
-    var img = [
-      DragonImage,
-      DragonImage1,
-      DragonImage2,
-      DragonImage3,
-      DragonImage4,
-    ];
-    var indexSelected = Math.floor(Math.random() * img.length);
-    setDragonImg(img[indexSelected]);
+    ImportImage();
   }, [id]);
+
+  const ImportImage = async () => {
+    const indexSelected = Math.floor(Math.random() * 5); // 5 = dragon images
+    const image = await import(`../../../assets/dragons/${indexSelected}.png`);
+    setDragonImg(image.default);
+  };
 
   return (
     <>

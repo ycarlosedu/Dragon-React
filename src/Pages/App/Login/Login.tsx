@@ -117,7 +117,7 @@ const Login: React.FC = () => {
               </>
             )}
           </CreateAccountDiv>
-          <Button isLoading={isLoading} type="submit">
+          <Button variant="default" isLoading={isLoading} type="submit">
             {params ? 'Cadastrar' : 'Entrar'}
           </Button>
         </Form>

@@ -92,7 +92,7 @@ const Home: React.FC = () => {
         {isLoaded ? (
           <Content>
             <SubHeader>
-              <Button onClick={() => navigate('/new')}>
+              <Button variant="default" onClick={() => navigate('/new')}>
                 Inserir novo dragão
               </Button>
               <InfoNumber>

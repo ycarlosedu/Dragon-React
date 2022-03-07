@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import defaultTheme from '../../styles/themes/defaultTheme';
 import { ButtonProps } from './Button';
 
 export const Tooltip = styled.span`
@@ -31,15 +32,22 @@ export const Tooltip = styled.span`
   }
 `;
 
+const buttonBG: { [key: string]: string } = {
+  icon: defaultTheme.Background,
+  warning: defaultTheme.GradientRed,
+  default: defaultTheme.GradientBlue,
+};
+
+const buttonSize: { [key: string]: string } = {
+  icon: '50px',
+  warning: '250px',
+  default: '250px',
+};
+
 export const ButtonWrapper = styled.button<ButtonProps>`
-  width: ${(props) => (props.variant === 'icon' ? '50px' : '250px')};
+  width: ${(props) => buttonSize[props.variant]};
   height: 50px;
-  background: ${(props) =>
-    props.variant === 'icon'
-      ? props.theme.Background
-      : props.variant === 'warning'
-      ? props.theme.GradientRed
-      : props.theme.GradientBlue};
+  background: ${(props) => buttonBG[props.variant]};
   color: white;
   border: none;
   border-radius: 8px;

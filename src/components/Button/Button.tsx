@@ -3,7 +3,7 @@ import { Bars } from 'react-loader-spinner';
 import { ButtonWrapper, Tooltip } from './styles';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: string;
+  variant: string;
   onClick?: any;
   tooltip?: string;
   isLoading?: boolean;
@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
     <ButtonWrapper
       variant={variant}
       onClick={onClick}
-      type={type ? 'submit' : 'button'}
+      type={type ? type : 'button'}
       tooltip={tooltip}
     >
       {tooltip && <Tooltip>{tooltip}</Tooltip>}

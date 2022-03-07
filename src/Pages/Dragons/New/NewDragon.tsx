@@ -151,7 +151,7 @@ const NewDragon: React.FC = () => {
               onChange={setHistories}
               value={histories}
             />
-            <Button isLoading={isLoading} type="submit">
+            <Button variant="default" isLoading={isLoading} type="submit">
               {id ? 'Salvar' : 'Adicionar dragão'}
             </Button>
           </Form>

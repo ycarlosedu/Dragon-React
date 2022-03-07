@@ -40,7 +40,9 @@ const ModalWrapper: React.FC<ModalProps> = ({
           </InfosModal>
 
           <ButtonsModal>
-            <Button onClick={() => setModalIsOpen(false)}>Fechar</Button>
+            <Button variant="default" onClick={() => setModalIsOpen(false)}>
+              Fechar
+            </Button>
           </ButtonsModal>
         </>
       ) : modalState === 'error' ? (
@@ -53,7 +55,9 @@ const ModalWrapper: React.FC<ModalProps> = ({
           </InfosModal>
 
           <ButtonsModal>
-            <Button onClick={() => setModalIsOpen(false)}>Fechar</Button>
+            <Button variant="default" onClick={() => setModalIsOpen(false)}>
+              Fechar
+            </Button>
           </ButtonsModal>
         </>
       ) : (
@@ -66,7 +70,9 @@ const ModalWrapper: React.FC<ModalProps> = ({
           </InfosModal>
 
           <ButtonsModal>
-            <Button onClick={() => setModalIsOpen(false)}>Cancelar</Button>
+            <Button variant="default" onClick={() => setModalIsOpen(false)}>
+              Cancelar
+            </Button>
             <Button variant="warning" onClick={handleDeleteDragon}>
               Confirmar
             </Button>
