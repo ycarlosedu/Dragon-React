@@ -12,10 +12,11 @@ const CardDragon: React.FC<CardDragonProps> = ({ dragon, deleteDragons }) => {
 
   return (
     <Card>
-      <h2>{dragon.name}</h2>
-      <p>Tipo: {dragon.type}</p>
+      <h2 data-testid="dragon-name">{dragon.name}</h2>
+      <p data-testid="dragon-type">Tipo: {dragon.type}</p>
       <DivButton>
         <Button
+          testid="view-dragon"
           tooltip="Visualizar"
           variant="icon"
           onClick={() => navigate(`/view/${dragon.id}`)}
@@ -23,6 +24,7 @@ const CardDragon: React.FC<CardDragonProps> = ({ dragon, deleteDragons }) => {
           <ViewIcon color={'#04d361'} />
         </Button>
         <Button
+          testid="edit-dragon"
           tooltip="Editar"
           variant="icon"
           onClick={() => navigate(`/edit/${dragon.id}`)}
@@ -30,6 +32,7 @@ const CardDragon: React.FC<CardDragonProps> = ({ dragon, deleteDragons }) => {
           <EditIcon color={'#ffcd1e'} />
         </Button>
         <Button
+          testid="delete-dragon"
           tooltip="Deletar"
           variant="icon"
           onClick={() => deleteDragons(dragon.id, dragon.name, dragon.type)}

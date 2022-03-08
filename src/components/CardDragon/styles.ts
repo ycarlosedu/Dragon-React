@@ -12,6 +12,13 @@ export const Card = styled.div`
   align-items: center;
   justify-content: space-around;
   text-align: center;
+
+  & > p {
+    max-width: 20ch;
+    max-height: 10ch;
+    overflow: hidden;
+    word-break: break-word;
+  }
 `;
 
 export const DivButton = styled.div`

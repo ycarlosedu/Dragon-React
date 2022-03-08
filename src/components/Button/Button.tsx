@@ -7,6 +7,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: any;
   tooltip?: string;
   isLoading?: boolean;
+  testid?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -16,6 +17,7 @@ const Button: React.FC<ButtonProps> = ({
   type,
   tooltip,
   isLoading = false,
+  testid,
 }) => {
   return (
     <ButtonWrapper
@@ -23,6 +25,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       type={type ? type : 'button'}
       tooltip={tooltip}
+      data-testid={testid}
     >
       {tooltip && <Tooltip>{tooltip}</Tooltip>}
       {isLoading ? (

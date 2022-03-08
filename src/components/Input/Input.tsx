@@ -28,7 +28,9 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <InputDiv isFilled={isFilled} isFocused={isFocused}>
-      <label htmlFor={label}>{label}</label>
+      <label data-testid="label" htmlFor={label}>
+        {label}
+      </label>
       <InputComponent
         id={label}
         required={required}

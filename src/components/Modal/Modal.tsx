@@ -4,7 +4,7 @@ import Button from '../Button';
 import { ButtonsModal, InfosModal } from './styles';
 import { dragonModalProps } from '../../Types/dragons';
 
-Modal.setAppElement('#root');
+Modal.setAppElement('body');
 
 type ModalProps = {
   modalIsOpen: boolean;

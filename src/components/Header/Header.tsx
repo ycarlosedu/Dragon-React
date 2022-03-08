@@ -29,7 +29,7 @@ const Header: React.FC = () => {
   return (
     <Container>
       <Content>
-        <LogoGroupDiv to="/">
+        <LogoGroupDiv to="/" data-testid="logo">
           <img src={Logo} alt="" />
           <img src={LogoName} alt="" />
         </LogoGroupDiv>
